@@ -1,30 +1,7 @@
 #!/bin/bash
 
-while getopts ":pst:" opt; do
-  case $opt in
-    p)
-      echo "-p was triggered, Parameter: $OPTARG" >&2
-      PASS=$OPTARG
-      ;;
-    s)
-      SITE=$OPTARG
-      ;;
-    t)
-      PASS=$OPTARG
-      ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      exit 1
-      ;;
-    :)
-      echo "Option -$OPTARG requires an argument." >&2
-      exit 1
-      ;;
-  esac
-done
-
 echo "Checking live theme updates..."
-theme download -p=$PASS -s=$SITE -t=$THEME
+theme download -p=$MAIN_SHOPIFY_PASSWORD -s=$MAIN_SHOPIFY_STORE_URL -t=$MAIN_SHOPIFY_THEME_ID
 if [ -z "$(git status --porcelain)" ]; then
   echo "No new changes have been made to the live theme, proceeding with deployment."
   exit 0;

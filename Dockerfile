@@ -8,7 +8,7 @@ RUN curl -s https://shopify.github.io/themekit/scripts/install.py | python
 
 COPY "predeploy.sh" "/predeploy.sh"
 RUN chmod +x /predeploy.sh
-RUN ./predeploy.sh -p $MAIN_SHOPIFY_PASSWORD -s $MAIN_SHOPIFY_STORE_URL -t $MAIN_SHOPIFY_THEME_ID
+RUN ./predeploy.sh
 
 COPY "entrypoint.sh" "/entrypoint.sh"
 RUN chmod +x /entrypoint.sh
